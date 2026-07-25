@@ -29,8 +29,17 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 1. Entra en [notebooklm.google.com](https://notebooklm.google.com) y crea un notebook nuevo.
 2. Ponle un nombre corto y reconocible, por ejemplo `Cerebro Hormozi`.
-3. Añade como **fuentes** los enlaces de YouTube de los mejores vídeos del experto
-   (botón *Añadir fuente → YouTube*). NotebookLM transcribe el audio por ti.
+3. Añade como **fuentes** los vídeos del experto. NotebookLM transcribe el audio
+   por ti. Tienes tres formas de hacerlo:
+   - **A mano**: botón *Añadir fuente → YouTube* y pegas cada enlace. Gratis,
+     pero lento para 50 vídeos.
+   - **Extensión de Chrome** (la del truco original): [YouTube to NotebookLM](https://chromewebstore.google.com/detail/youtube-to-notebooklm/kobncfkmjelbefaoohoblamnbackjggk)
+     añade un botón en YouTube para mandar el vídeo, la playlist o el canal
+     entero al notebook con un clic. Gratis con límite diario; la importación
+     masiva de playlists es de pago.
+   - **Con este kit** (gratis y en lote): cuando termines el Paso 2, pídeselo a
+     Claude — *"añade estos enlaces al cuaderno Cerebro Hormozi"* — o usa la
+     terminal: `nlm add url <cuaderno> <enlace-youtube>`.
 4. El plan gratuito admite hasta **50 fuentes por notebook** — suficiente para
    los 50 vídeos más populares de cualquiera.
 
