@@ -19,19 +19,26 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # 2. notebooklm-mcp-cli (el puente con NotebookLM)
-if command -v nlm >/dev/null 2>&1; then
+NLM_BIN="$HOME/.local/bin"
+if [ -x "$NLM_BIN/nlm" ]; then
   echo "✓ notebooklm-mcp-cli ya estaba instalado — buscando actualizaciones..."
   uv tool upgrade notebooklm-mcp-cli >/dev/null 2>&1 || true
 else
   echo "→ Instalando notebooklm-mcp-cli..."
   uv tool install notebooklm-mcp-cli
 fi
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$NLM_BIN:$PATH"
+
+# Asegurar que la carpeta de programas esté en el PATH de la terminal
+# (para poder escribir "nlm login" directamente en terminales nuevas)
+uv tool update-shell >/dev/null 2>&1 || true
 
 # 3. Registrar el servidor MCP en Claude Code
 if command -v claude >/dev/null 2>&1; then
   echo "→ Conectando NotebookLM con Claude Code..."
-  nlm setup add claude-code
+  # Ruta absoluta al servidor: funciona aunque ~/.local/bin no esté en el PATH
+  claude mcp remove notebooklm-mcp -s user >/dev/null 2>&1 || true
+  claude mcp add -s user notebooklm-mcp -- "$NLM_BIN/notebooklm-mcp"
 else
   echo ""
   echo "⚠️  No encuentro Claude Code. Instálalo con:"
