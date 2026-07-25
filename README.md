@@ -46,30 +46,27 @@ cd notebook-brain
 bash setup.sh
 ```
 
-El script hace tres cosas (y te va contando cada una):
+El script hace todo esto (y te va contando cada paso):
 
 1. Instala `uv` si no lo tienes (un gestor de paquetes de Python).
 2. Instala [`notebooklm-mcp-cli`](https://github.com/jacob-bd/notebooklm-mcp-cli),
    el puente entre NotebookLM y Claude.
 3. Registra el servidor MCP en Claude Code automáticamente.
+4. Te crea la carpeta `~/mi-cerebro` con la plantilla lista para editar.
 
 Al final te pedirá iniciar sesión en Google: se abre tu navegador y entras con
 normalidad. **Tu contraseña nunca se guarda** — solo las cookies de sesión, que
 duran unas 2–4 semanas (cuando caduquen, repite `nlm login` y listo).
 
+Puedes ejecutarlo las veces que quieras: no rompe ni duplica nada.
+
 ---
 
 ## Paso 3 — Dale personalidad
 
-Crea una carpeta para tu cerebro y copia la plantilla:
-
-```bash
-mkdir -p ~/mi-cerebro && cp plantillas/CLAUDE.md ~/mi-cerebro/CLAUDE.md
-```
-
-Abre `~/mi-cerebro/CLAUDE.md` y rellena los huecos: nombre del experto, nombre
-del notebook y su estilo de comunicación. En [`plantillas/`](plantillas/) tienes
-un ejemplo ya relleno al estilo Alex Hormozi.
+El instalador ya te creó `~/mi-cerebro/CLAUDE.md`. Ábrelo y rellena los huecos:
+nombre del experto, nombre exacto del notebook y su estilo de comunicación. En
+[`plantillas/`](plantillas/) tienes un ejemplo ya relleno al estilo Alex Hormozi.
 
 Ese archivo `CLAUDE.md` se carga automáticamente cada vez que abras Claude Code
 en esa carpeta — es lo que convierte a Claude en "el experto".
@@ -93,17 +90,38 @@ y citas de los vídeos originales.
 
 ---
 
+## Actualizar
+
+Cuando haya novedades en el proyecto o el puente deje de funcionar por un cambio
+de Google:
+
+```bash
+cd notebook-brain && git pull && bash setup.sh
+```
+
+---
+
 ## Preguntas frecuentes
 
 **¿Es oficial de Google?** No. Google aún no tiene API pública de NotebookLM, así
 que esto usa un puente creado por la comunidad. Si Google cambia su web, puede
-fallar temporalmente hasta que actualicen el puente (`uv tool upgrade notebooklm-mcp-cli`).
+fallar temporalmente hasta que actualicen el puente (ver [Actualizar](#actualizar)).
 
-**¿Cuánto cuesta?** NotebookLM es gratis (~50 consultas/día). Claude Code requiere
-suscripción o API de Anthropic.
+**¿Cuánto cuesta?** NotebookLM es gratis (~50 consultas/día; ojo, una pregunta a
+Claude puede gastar 2–3 consultas). Claude Code requiere suscripción o API de
+Anthropic — es el único coste obligatorio.
+
+**La terminal dice `command not found: nlm`.** Abre una terminal nueva: el
+instalador configura el PATH, pero solo las terminales nuevas lo ven.
+
+**Claude no usa el notebook.** Tres comprobaciones: (1) reinicia Claude Code si
+estaba abierto durante la instalación, (2) abre `claude` dentro de la carpeta que
+tiene tu `CLAUDE.md`, (3) verifica la conexión con `claude mcp list` — debe salir
+`notebooklm-mcp ✔ Connected`.
 
 **Me dice que no encuentra el notebook.** Ejecuta `nlm login` para renovar la
-sesión, o comprueba que el nombre en tu `CLAUDE.md` coincide con el de NotebookLM.
+sesión, o comprueba que el nombre en tu `CLAUDE.md` coincide exactamente con el
+de NotebookLM.
 
 **¿Puedo tener varios cerebros?** Sí: un notebook + una carpeta con su `CLAUDE.md`
 por cada experto.
