@@ -61,7 +61,9 @@ El script hace todo esto (y te va contando cada paso):
 2. Instala [`notebooklm-mcp-cli`](https://github.com/jacob-bd/notebooklm-mcp-cli),
    el puente entre NotebookLM y Claude.
 3. Registra el servidor MCP en Claude Code automáticamente.
-4. Te crea la carpeta `~/mi-cerebro` con la plantilla lista para editar.
+4. Te crea tu primer cerebro en `cerebros/mi-cerebro` con la plantilla lista
+   para editar. La carpeta `cerebros/` es privada: git la ignora, así que tus
+   cerebros nunca se suben a ningún sitio y actualizar el kit jamás los toca.
 
 Al final te pedirá iniciar sesión en Google: se abre tu navegador y entras con
 normalidad. **Tu contraseña nunca se guarda** — solo las cookies de sesión, que
@@ -73,7 +75,8 @@ Puedes ejecutarlo las veces que quieras: no rompe ni duplica nada.
 
 ## Paso 3 — Dale personalidad
 
-El instalador ya te creó `~/mi-cerebro/CLAUDE.md`. Ábrelo y rellena los huecos:
+El instalador ya te creó `cerebros/mi-cerebro/CLAUDE.md` (dentro de la carpeta
+del proyecto). Ábrelo y rellena los huecos:
 nombre del experto, nombre exacto del notebook y su estilo de comunicación. En
 [`plantillas/`](plantillas/) tienes un ejemplo ya relleno al estilo Alex Hormozi.
 
@@ -85,7 +88,7 @@ en esa carpeta — es lo que convierte a Claude en "el experto".
 ## Paso 4 — Úsalo
 
 ```bash
-cd ~/mi-cerebro && claude
+cd notebook-brain/cerebros/mi-cerebro && claude
 ```
 
 Y pregunta lo que quieras:
@@ -139,8 +142,10 @@ produce algo valioso (un plan, un análisis), pídele a Claude que lo guarde ant
 de cerrar: *"guarda este plan en un archivo plan.md"*. Los archivos de la carpeta
 son la memoria entre sesiones.
 
-**¿Puedo tener varios cerebros?** Sí: un notebook + una carpeta con su `CLAUDE.md`
-por cada experto.
+**¿Puedo tener varios cerebros?** Sí: un notebook + una carpeta por experto
+dentro de `cerebros/`. Copia la plantilla (`cp plantillas/CLAUDE.md
+cerebros/otro-experto/CLAUDE.md`), rellénala, y actívalo con
+`cd cerebros/otro-experto && claude`.
 
 ---
 

@@ -70,7 +70,7 @@ elif [ -t 0 ]; then
 fi
 
 # 5. Crear la carpeta del primer cerebro con la plantilla (sin pisar nada)
-CEREBRO="$HOME/mi-cerebro"
+CEREBRO="$REPO_DIR/cerebros/mi-cerebro"
 if [ -f "$CEREBRO/CLAUDE.md" ]; then
   echo "✓ $CEREBRO/CLAUDE.md ya existe — no lo toco"
 else
@@ -88,9 +88,10 @@ if [ "$LOGIN_PENDIENTE" = "1" ]; then
 fi
 echo "  1. Crea tu cuaderno en https://notebooklm.google.com y añade los vídeos"
 echo "     del experto como fuentes (enlaces de YouTube)"
-echo "  2. Edita ~/mi-cerebro/CLAUDE.md: nombre del experto, nombre del cuaderno"
-echo "     y su estilo (tienes un ejemplo en plantillas/CLAUDE-ejemplo-hormozi.md)"
-echo "  3. Abre tu cerebro:  cd ~/mi-cerebro && claude"
+echo "  2. Edita $CEREBRO/CLAUDE.md:"
+echo "     nombre del experto, nombre del cuaderno y su estilo"
+echo "     (tienes un ejemplo en plantillas/CLAUDE-ejemplo-hormozi.md)"
+echo "  3. Abre tu cerebro:  cd $CEREBRO && claude"
 echo ""
 echo "Consejos:"
 echo "  · Si 'nlm' no se encuentra, abre una terminal nueva."
