@@ -132,6 +132,13 @@ tiene tu `CLAUDE.md`, (3) verifica la conexión con `claude mcp list` — debe s
 sesión, o comprueba que el nombre en tu `CLAUDE.md` coincide exactamente con el
 de NotebookLM.
 
+**¿Pierdo la información al cerrar la sesión?** No. El cuaderno vive en tu cuenta
+de Google y la personalidad en tu `CLAUDE.md` — cada sesión nueva los carga de
+cero. La conversación anterior se retoma con `claude --continue`. Y si una sesión
+produce algo valioso (un plan, un análisis), pídele a Claude que lo guarde antes
+de cerrar: *"guarda este plan en un archivo plan.md"*. Los archivos de la carpeta
+son la memoria entre sesiones.
+
 **¿Puedo tener varios cerebros?** Sí: un notebook + una carpeta con su `CLAUDE.md`
 por cada experto.
 
